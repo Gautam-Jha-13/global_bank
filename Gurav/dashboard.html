@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard - Global Bank</title>
+<style>
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Header Styles */
+  header {
+    background-color: rgb(26, 26, 26);
+    padding: 20px;
+    color: darkteal;
+    text-align: left;
+    margin-bottom: 20px;
+    border-bottom: 2px solid darkteal;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .logo-container {
+    border: 2px solid rgb(198, 174, 42);
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .logo {
+    width: 100px;
+  }
+  
+  .file-upload-container {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+  }
+  
+  .file-upload-container input[type="file"] {
+    display: none;
+  }
+  
+  .file-upload-container button {
+    background-color: rgb(198, 174, 42);
+    color: darkteal;
+    padding: 10px;
+    font-size: 14px;
+    border: 2px solid darkteal;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+  
+  .dropdown {
+    position: relative;
+    display: inline-block;
+    margin: 0 10px;
+  }
+  
+  .dropdown button {
+    background-color: rgb(198, 174, 42);
+    color: darkteal;
+    padding: 12px;
+    font-size: 16px;
+    border: 2px solid darkteal;
+    cursor: pointer;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: beige;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    padding: 10px;
+  }
+  
+  .dropdown-content a {
+    color: black;
+    padding: 10px 0;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown-content a:hover {
+    background-color: rgb(198, 174, 42);
+    color: darkteal;
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  .dropdown:hover button {
+    background-color: white;
+  }
+  
+  .global-bank {
+    font-weight: bold;
+    font-size: 24px;
+    color: rgb(198, 174, 42);
+  }
+  
+  .language-section {
+    margin-left: auto;
+  }
+  
+  .login-search-container {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+  }
+  
+  .login-btn {
+    background-color: rgb(198, 174, 42);
+    color: darkteal;
+    padding: 12px;
+    font-size: 16px;
+    border: 2px solid darkteal;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  
+  .search-input-container {
+    position: relative;
+  }
+  
+  .search-input {
+    padding: 10px 45px 10px 10px; /* Adjusted padding for search input */
+    border: 2px solid darkteal;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 200px; /* Adjusted width for search input */
+  }
+  
+  .notification-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: darkteal;
+  }
+  
+  .search-icon {
+    position: absolute;
+    right: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  /* Slider Styles */
+  .slider-container {
+    position: relative;
+    max-width: 100%;
+    overflow: hidden;
+    height: 450px; /* Increased height for slider */
+    margin-bottom: 20px;
+  }
+  
+  .slide {
+    display: none;
+  }
+  
+  .slide img {
+    width: 100%; /* Set width to 100% */
+    height: auto; /* Set height to auto to maintain aspect ratio */
+  }
+  
+  
+  /* Moving red color line under the slider section */
+  .slider-line {
+    height: 8px;
+    background-color:rgb(198, 174, 42);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    animation: move 5s linear infinite; /* Animation for moving line */
+  }
+  
+  @keyframes move {
+    0% {
+      width: 0;
+    }
+    100% {
+      width: 100%;
+    }
+  }
+  
+  /* Footer Styles */
+  footer {
+    background-color: rgb(26, 26, 26);
+    color: rgb(198, 174, 42);
+    padding: 10px; 
+    position: relative;
+  }
+  
+  .footer-menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .footer-menu div {
+    flex: 1;
+    margin-right: 20px;
+  }
+  
+  .footer-menu h3 {
+    margin-bottom: 20px;
+  }
+  
+  .footer-menu ul {
+    list-style-type: none;
+  }
+  
+  .footer-menu ul li {
+    margin-bottom: 10px;
+  }
+  
+  .footer-menu ul li a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  .footer-menu ul li a:hover {
+    color: darkteal;
+  }
+  .file-upload-section {
+    border: 2px solid rgb(198, 174, 42);
+    border-radius: 5px;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 400px; /* Adjust width as needed */
+  }
+  
+  .file-upload-section input[type="file"] {
+    background-color: rgb(198, 174, 42);
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .file-upload-section button {
+    background-color: rgb(198, 174, 42);
+    color: darkteal;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: 2px solid darkteal;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  #uploadMessage {
+    color: red;
+    margin-top: 10px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo-container">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEBzXPUrAejB-My89fHdIXrCBFZplATol6oiIufZs9Lg&s" alt="Global Bank Logo" class="logo">
+    <div class="global-bank">Global Bank</div>
+  </div>
+  
+
+  <div class="file-upload-section"> 
+    <form action="dashboard.php" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" id="file" accept=".pdf" required>
+        <br>
+        <input type="submit" value="Upload File" name="submit">
+    </form>
+    </div>
+
+
+  <div class="language-section">
+    <div class="dropdown">
+      <button id="languageButton">Choose Language</button>
+      <div class="dropdown-content">
+        <a href="#" onclick="changeLanguage('english')">English</a>
+        <a href="#" onclick="changeLanguage('spanish')">Spanish</a>
+        <a href="#" onclick="changeLanguage('french')">French</a>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Only display if user is logged in -->
+  <div class="login-search-container">
+    <a href="#" class="login-btn" id="logoutBtn">Logout</a>
+    <div class="search-input-container">
+      <input type="text" class="search-input" placeholder="Search">
+      <div class="notification-icon">&#x1F514;</div>
+      <div class="search-icon">&#128269;</div>
+    </div>
+  </div>
+</header>
+
+<nav>
+    <div class="dropdown">
+        <button>Accounts</button>
+        <div class="dropdown-content">
+          <a href="#">Savings Account</a>
+          <a href="#">Checking Account</a>
+          <a href="#">Credit Card Account</a>
+        </div>
+      </div>
+      
+      <div class="dropdown">
+        <button>Deposits</button>
+        <div class="dropdown-content">
+          <a href="#">Fixed Deposits</a>
+          <a href="#">Recurring Deposits</a>
+          <a href="#">Savings Deposits</a>
+        </div>
+      </div>
+      
+      <div class="dropdown">
+        <button>Payments</button>
+        <div class="dropdown-content">
+          <a href="#">Bill Payments</a>
+          <a href="#">Online Transfers</a>
+          <a href="#">International Payments</a>
+        </div>
+      </div>
+      
+      <div class="dropdown">
+        <button>Cards</button>
+        <div class="dropdown-content">
+          <a href="#">Credit Cards</a>
+          <a href="#">Debit Cards</a>
+          <a href="#">Prepaid Cards</a>
+        </div>
+      </div>
+      
+      <div class="dropdown">
+        <button>Loans</button>
+        <div class="dropdown-content">
+          <a href="#">Personal Loans</a>
+          <a href="#">Home Loans</a>
+          <a href="#">Auto Loans</a>
+        </div>
+      </div>
+      
+      <div class="dropdown">
+        <button>Investments</button>
+        <div class="dropdown-content">
+          <a href="#">Stocks</a>
+          <a href="#">Mutual Funds</a>
+          <a href="#">Bonds</a>
+        </div>
+      </div>
+      
+      <div class="dropdown">
+        <button>Insurance</button>
+        <div class="dropdown-content">
+          <a href="#">Life Insurance</a>
+          <a href="#">Health Insurance</a>
+          <a href="#">Property Insurance</a>
+        </div>
+      </div>
+      
+      <div class="dropdown">
+        <button>Shop</button>
+        <div class="dropdown-content">
+          <a href="#">Products</a>
+          <a href="#">Services</a>
+          <a href="#">Offers</a>
+        </div>
+      </div>
+      
+      <div class="dropdown">
+        <button>Special Services</button>
+        <div class="dropdown-content">
+          <a href="#">Wealth Management</a>
+          <a href="#">Private Banking</a>
+          <a href="#">Customer Support</a>
+        </div>
+      </div>
+</nav>
+
+<div class="slider-container">
+    <!-- Slider images -->
+    <div class="slide">
+      <img src="https://img.freepik.com/free-vector/bank-service-concept-facebook-cover-template_23-2150459496.jpg" alt="Slide 1">
+    </div>
+    <div class="slide">
+      <img src="https://img.freepik.com/free-vector/bank-service-concept-webinar-template_23-2150459516.jpg" alt="Slide 2">
+    </div>
+    <div class="slide">
+      <img src="https://img.freepik.com/free-vector/banking-business-sale-banner-template_23-2150981676.jpg" alt="Slide 3">
+    </div>
+  
+    <!-- Previous and next buttons -->
+    <button class="prev" onclick="plusSlides(-1)">❮</button>
+    <button class="next" onclick="plusSlides(1)">❯</button>
+  
+    <!-- Moving red color line -->
+    <div class="slider-line"></div>
+  </div>
+
+  <footer>
+    <div class="footer-menu">
+      <div>
+        <h3>About Us</h3>
+        <ul>
+          <li><a href="#">Awards & Recognition</a></li>
+          <li><a href="#">Media Center</a></li>
+          <li><a href="#">Career Opportunities</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Tools & Calculators</h3>
+        <ul>
+          <li><a href="#">Fixed Deposit EMI Calculator</a></li>
+          <li><a href="#">Personal Loan EMI Calculator</a></li>
+          <li><a href="#">Home Loan EMI Calculator</a></li>
+          <li><a href="#">Car Loan EMI Calculator</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Regulatory Information</h3>
+        <ul>
+          <li><a href="#">Safe Banking</a></li>
+          <li><a href="#">RBI Awareness Campaign</a></li>
+          <li><a href="#">RBI: Beware of Fictitious Offers</a></li>
+          <li><a href="#">RBI Kehta Hai</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Customer Service</h3>
+        <ul>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Customer Care</a></li>
+          <li><a href="#">Report Unauthorized Transactions</a></li>
+          <li><a href="#">Form Center</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Popular Products & Services</h3>
+        <ul>
+          <li><a href="#">Savings Account</a></li>
+          <li><a href="#">Current Account</a></li>
+          <li><a href="#">Fixed Deposit</a></li>
+          <li><a href="#">Money Transfer</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Ways to Bank</h3>
+        <ul>
+          <li><a href="#">Digital Banking</a></li>
+          <li><a href="#">Mobile Banking</a></li>
+          <li><a href="#">Internet Banking</a></li>
+          <li><a href="#">iMobile Pay</a></li>
+        </ul>
+      </div>
+    </div>
+    </div>
+  </footer>
+  
+  <script>
+    document.getElementById("logoutBtn").addEventListener("click", function(event) {
+      event.preventDefault();
+      // Perform logout operation here, such as clearing session data, etc.
+      // Redirect to login page
+      window.location.href = "my3.html"; // Redirect to my3.html after logout
+    });
+    
+    function changeLanguage(language) {
+      // Language change logic
+    }
+
+    var slideIndex = 0;
+showSlides();
+
+function showSlides() {
+  var i;
+  var slides = document.getElementsByClassName("slide");
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  slideIndex++;
+  if (slideIndex > slides.length) {slideIndex = 1}
+  slides[slideIndex - 1].style.display = "block";
+  setTimeout(showSlides, 5000); // Change slide every 5 seconds
+}
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function uploadFile() {
+  var fileInput = document.getElementById('file'); // Corrected the id here
+  var file = fileInput.files[0];
+  if (file) {
+    var fileSize = file.size; // in bytes
+    var validFormats = ['pdf']; // Only PDF format allowed
+    var fileExtension = file.name.split('.').pop().toLowerCase();
+    
+    if (fileSize > 50000000 || !validFormats.includes(fileExtension)) {
+      document.getElementById('uploadMessage').innerText = "File size should be less than 50000KB & File only in PDF Format!!!";
+    } else {
+      // File is valid, proceed with uploading
+      // Simulating file upload with a timeout
+      setTimeout(function() {
+        document.getElementById('uploadMessage').innerText = "File successfully added";
+      }, 2000);
+    }
+  }
+}
+
+function changeLanguage(language) {
+  // Example translations for demonstration purposes
+  const translations = {
+    'english': {
+      'login': 'Login',
+      'searchPlaceholder': 'Search',
+      'chooseLanguage': 'Choose Language'
+    },
+    'spanish': {
+      'login': 'Iniciar sesión',
+      'searchPlaceholder': 'Buscar',
+      'chooseLanguage': 'Seleccionar Idioma'
+    },
+    'french': {
+      'login': 'Connexion',
+      'searchPlaceholder': 'Rechercher',
+      'chooseLanguage': 'Choisir la Langue'
+    }
+  };
+
+  // Get all elements that need translation
+  const loginButton = document.querySelector('.login-btn');
+  const searchInput = document.querySelector('.search-input');
+  const languageButton = document.getElementById('languageButton');
+
+  // Update text content based on selected language
+  loginButton.textContent = translations[language]['login'];
+  searchInput.placeholder = translations[language]['searchPlaceholder'];
+  languageButton.textContent = translations[language]['chooseLanguage'];
+}
+    </script>
+    
+
+</body>
+</html>
